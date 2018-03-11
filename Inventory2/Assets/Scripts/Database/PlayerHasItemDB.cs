@@ -48,6 +48,8 @@ public class PlayerHasItemDB : MonoBehaviour
 		playerHasItemJson = JsonMapper.ToJson (playerHasItemDB);
 		File.WriteAllText (Application.dataPath + "/Resources/StreamingAssets/PlayerHasItem.json", playerHasItemJson.ToString ());
 
+		CraftPanelUI.ins.RefreshCraftPanel ();
+
 		print ("saving playerHasItemDB " + playerHasItemDB.Count + " items");
 	}
 
