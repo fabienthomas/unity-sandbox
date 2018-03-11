@@ -45,7 +45,7 @@ public class NotificationUI : MonoBehaviour
 		// udpate notification icon
 		Image _icon = _notificationItem.GetComponentInChildren<Image> ();
 		_icon.sprite = _item.Sprite;
-		_icon.enabled = true;
+		_icon.enabled = false;
 
 		_notificationItem.transform.SetParent (notificationPanel.transform);
 		_notificationItem.transform.position = notificationPanel.transform.position;
