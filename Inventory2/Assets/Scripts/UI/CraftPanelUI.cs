@@ -21,7 +21,7 @@ public class CraftPanelUI : MonoBehaviour
 
 	#endregion
 
-	GameObject craftPanel;
+	public GameObject craftPanel;
 
 	[SerializeField] private GameObject craftingItemPrefab;
 	[SerializeField] private GameObject craftingItemIngredientPrefab;
@@ -29,8 +29,6 @@ public class CraftPanelUI : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		craftPanel = this.gameObject;
-
 		StartCoroutine (InitCraftPanel ());
 	}
 
@@ -138,6 +136,8 @@ public class CraftPanelUI : MonoBehaviour
 
 		// load panel
 		StartCoroutine (InitCraftPanel ());
+
+		print ("Refreshed CraftPanel UI");
 	}
 
 	// add a new item to craft

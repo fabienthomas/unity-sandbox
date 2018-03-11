@@ -1208,6 +1208,7 @@ GameObject:
   - component: {fileID: 344953389}
   - component: {fileID: 344953390}
   - component: {fileID: 344953391}
+  - component: {fileID: 344953392}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -1304,6 +1305,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1577116600048156, guid: 783188cd2f1fb2142aba19b81134d89b, type: 2}
   itemPrefab: {fileID: 1739372568111460, guid: 987a04af5f072794aade8e2cd262d29d, type: 2}
+--- !u!114 &344953392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 344953385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cc3893319a10c4fb34786315642e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  craftPanel: {fileID: 513949557}
+  craftingItemPrefab: {fileID: 1399675098453124, guid: 63dd6fd51c5ddbb4fa4c24b113758843,
+    type: 2}
+  craftingItemIngredientPrefab: {fileID: 1452092756744730, guid: d4b6ef02b3f41b44d9bd1769fb15ef96,
+    type: 2}
 --- !u!1 &388788279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1433,6 @@ GameObject:
   - component: {fileID: 513949558}
   - component: {fileID: 513949560}
   - component: {fileID: 513949559}
-  - component: {fileID: 513949561}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1478,21 +1494,6 @@ MonoBehaviour:
   m_Spacing: {x: 12, y: 12}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &513949561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 513949557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91cc3893319a10c4fb34786315642e3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craftingItemPrefab: {fileID: 1399675098453124, guid: 63dd6fd51c5ddbb4fa4c24b113758843,
-    type: 2}
-  craftingItemIngredientPrefab: {fileID: 1452092756744730, guid: d4b6ef02b3f41b44d9bd1769fb15ef96,
-    type: 2}
 --- !u!1 &526693809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2741,7 +2742,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5528119126887fb4186134a6ca4aa6b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dbm: {fileID: 0}
 --- !u!1 &1215522653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150.2, y: 38.6}
+  m_AnchoredPosition: {x: -162, y: 50}
   m_SizeDelta: {x: 300, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1245796018
@@ -2864,13 +2864,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1245796016}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3662,6 +3662,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1549730493
@@ -3867,7 +3878,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 8
   m_Spacing: 6
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
