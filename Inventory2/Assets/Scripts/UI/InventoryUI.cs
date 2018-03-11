@@ -273,8 +273,9 @@ public class InventoryUI : MonoBehaviour
 	public InventoryItem GetItemById (int _idItem)
 	{
 		PlayerHasItem _rel = PlayerHasItemDB.ins.playerHasItemDB.Find (i => i.id == _idItem);
+
 		if (_rel != null && _rel.id > -1) {
-			List<InventoryItem> _allInventoryItems = new List<InventoryItem> (this.GetComponentsInChildren<InventoryItem> ());
+			List<InventoryItem> _allInventoryItems = new List<InventoryItem> (this.GetComponentsInChildren<InventoryItem> (true));
 			foreach (InventoryItem _inventoryItem in _allInventoryItems) {
 				if (_inventoryItem._relation == _rel) {
 					return _inventoryItem;
