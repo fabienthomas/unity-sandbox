@@ -31,7 +31,7 @@ public class MainUI : MonoBehaviour
 	//update InventoryItem Status
 	public void UpdateStatus (int _idRelation, string _newStatus)
 	{
-	
+		
 		// update Inventoryitem status
 		InventoryItem _inventoryItem = InventoryUI.ins.GetItemById (_idRelation);
 		PlayerHasItem _relation = PlayerHasItemDB.ins.GetById (_idRelation);
@@ -54,9 +54,6 @@ public class MainUI : MonoBehaviour
 						_amountUI.GetComponentInChildren<Image> ().enabled = true;
 						_amountUI.GetComponentInChildren<Text> ().text = _relation.amount.ToString ("D2");
 					}
-	
-					// show User notification
-					NotificationUI.ins.ItemAdded (_item, "added to inventory!");
 	
 				} else if (_newStatus == "BROKEN") {
 	
@@ -95,16 +92,22 @@ public class MainUI : MonoBehaviour
 	{
 
 		PlayerHasItem _relation = PlayerHasItemDB.ins.GetById (_idRelation);
+
 		if (_relation.amount > 1) {
 			_relation.amount--;
 			SavePlayerItems ();
 			UpdateStatus (_idRelation, "ACTIVE");
+			print ("Amount " + _relation.amount);
 		} else {
 			InventoryItem _inventoryItem = InventoryUI.ins.GetItemById (_idRelation);
-			Destroy (_inventoryItem.gameObject);
-			PlayerHasItemDB.ins.Remove (_relation);
+			if (_inventoryItem != null) {
+				print ("inventoryItem " + _inventoryItem.id);
+				Destroy (_inventoryItem.gameObject);
+				PlayerHasItemDB.ins.Remove (_relation);
+			} else {
+				Debug.LogError ("_inventoryItem not found for id #" + _idRelation);
+			}
 		}
-
 	}
 
 	public void SavePlayerItems ()
