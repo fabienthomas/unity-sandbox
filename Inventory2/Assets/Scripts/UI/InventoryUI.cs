@@ -22,6 +22,8 @@ public class InventoryUI : MonoBehaviour
 
 	#endregion
 
+	#region VARIABLES
+
 	[SerializeField] private GameObject slotPrefab;
 	[SerializeField] private GameObject itemPrefab;
 
@@ -30,25 +32,30 @@ public class InventoryUI : MonoBehaviour
 
 	private List<InventoryZone> inventoryZones = new List<InventoryZone> ();
 
+	#endregion
+
+	#region FUNCTIONS
+
 	// Use this for initialization
 	void Start ()
 	{
 
-		StartCoroutine (InitUI ());
+		StartCoroutine (InitInventoryUI ());
 
 	}
 
-	public IEnumerator InitUI ()
+	// fire up
+	public IEnumerator InitInventoryUI ()
 	{
 
 		// init zones
-		StartCoroutine (InitInventoryZones ());
+		yield return StartCoroutine (InitInventoryZones ());
 
-		StartCoroutine (InitPlayerItems ());
-
-		yield return null;
+		// then init items
+		InitPlayerItems ();
 	}
 
+	// prepare zones, loads slots
 	IEnumerator InitInventoryZones ()
 	{
 
@@ -109,7 +116,8 @@ public class InventoryUI : MonoBehaviour
 		yield return null;
 	}
 
-	IEnumerator InitPlayerItems ()
+	// loads items in slots
+	void InitPlayerItems ()
 	{
 		if (PlayerHasItemDB.ins.playerHasItemDB.Count > 0) {
 
@@ -117,15 +125,12 @@ public class InventoryUI : MonoBehaviour
 
 				InstanciateInventoryItem (PlayerHasItemDB.ins.playerHasItemDB [relationIndex]);
 
-				// trace
-				// dbm._playerHasItemDB._traceRel (_phiDB [relationIndex]);
 			}
 
 		}
-
-		yield return null;
 	}
 
+	// instanciate a new inventory item
 	public void InstanciateInventoryItem (PlayerHasItem _relation)
 	{
 
@@ -193,7 +198,7 @@ public class InventoryUI : MonoBehaviour
 			
 	}
 
-	// get a zone by its ID
+	// return a zone from id
 	InventoryZone GetZoneByID (int _idZone)
 	{
 		if (inventoryZones.Count > 0) {
@@ -207,6 +212,7 @@ public class InventoryUI : MonoBehaviour
 		return null;
 	}
 
+	// return a slot from id
 	public InventorySlot GetSlotById (string _idSlot)
 	{
 		List<InventorySlot> _inventorySlots = new List<InventorySlot> (this.GetComponentsInChildren<InventorySlot> (true));
@@ -270,6 +276,7 @@ public class InventoryUI : MonoBehaviour
 		return parentSlot.GetComponent<InventorySlot> ();
 	}
 
+	// return an inventory item from id
 	public InventoryItem GetItemById (int _idItem)
 	{
 		PlayerHasItem _rel = PlayerHasItemDB.ins.playerHasItemDB.Find (i => i.id == _idItem);
@@ -286,6 +293,7 @@ public class InventoryUI : MonoBehaviour
 		return null;
 	}
 
+	// move an inventory item from a slot to another
 	public void MoveInventoryItem (InventoryItem _inventoryItem, InventorySlot _inventorySlot, bool _save = true)
 	{
 		_inventoryItem.inventorySlot = _inventorySlot;
@@ -299,4 +307,5 @@ public class InventoryUI : MonoBehaviour
 		}
 	}
 
+	#endregion
 }

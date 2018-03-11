@@ -22,15 +22,23 @@ public class NotificationUI : MonoBehaviour
 
 	#endregion
 
+	#region VARIABLES
+
 	[SerializeField] private GameObject notificationPanel;
 	[SerializeField] private GameObject notificationPrefab;
 
+	#endregion
+
+	#region FUNCTIONS
+
+	// function called when a new item is added/crafted
 	public void ItemAdded (Item _item, string _message = "")
 	{
 		StartCoroutine (InstanciateItemNotification (_item, _message));
 	}
 
-	public IEnumerator InstanciateItemNotification (Item _item, string _message = "")
+	// instaniate and show a new notifiation
+	IEnumerator InstanciateItemNotification (Item _item, string _message = "")
 	{
 		GameObject _notificationItem = Instantiate (notificationPrefab);
 		CanvasGroup _cg = _notificationItem.GetComponent<CanvasGroup> ();
@@ -59,11 +67,13 @@ public class NotificationUI : MonoBehaviour
 		Hide (_notificationItem);
 	}
 
-	public void Hide (GameObject _notificationItem)
+	// hide notification
+	void Hide (GameObject _notificationItem)
 	{
 		StartCoroutine (FadeNotificationItem (_notificationItem, 0, .5f));
 	}
 
+	// fade in/out notification
 	IEnumerator FadeNotificationItem (GameObject _notificationItem, float end, float lerpTime = 1f)
 	{
 
@@ -92,4 +102,5 @@ public class NotificationUI : MonoBehaviour
 		}
 	}
 
+	#endregion
 }

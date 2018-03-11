@@ -21,19 +21,25 @@ public class CraftPanelUI : MonoBehaviour
 
 	#endregion
 
-	public GameObject craftPanel;
+	#region VARIABLES
+
+	[SerializeField] private GameObject craftPanel;
 
 	[SerializeField] private GameObject craftingItemPrefab;
 	[SerializeField] private GameObject craftingItemIngredientPrefab;
 
+	#endregion
+
+	#region FUNCTIONS
+
 	// Use this for initialization
 	void Start ()
 	{
-		StartCoroutine (InitCraftPanel ());
+		StartCoroutine (InitCraftPanelUI ());
 	}
 
 	// loads recipees in craftpanel
-	public IEnumerator InitCraftPanel ()
+	public IEnumerator InitCraftPanelUI ()
 	{
 		StartCoroutine (ClearCraftPanel ());
 
@@ -135,7 +141,7 @@ public class CraftPanelUI : MonoBehaviour
 		StartCoroutine (ClearCraftPanel ());
 
 		// load panel
-		StartCoroutine (InitCraftPanel ());
+		StartCoroutine (InitCraftPanelUI ());
 
 		print ("Refreshed CraftPanel UI");
 	}
@@ -164,4 +170,6 @@ public class CraftPanelUI : MonoBehaviour
 		NotificationUI.ins.ItemAdded (_selectedItem, " : crafting started");
 
 	}
+
+	#endregion
 }

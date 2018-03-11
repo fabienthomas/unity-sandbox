@@ -97,11 +97,9 @@ public class MainUI : MonoBehaviour
 			_relation.amount--;
 			SavePlayerItems ();
 			UpdateStatus (_idRelation, "ACTIVE");
-			print ("Amount " + _relation.amount);
 		} else {
 			InventoryItem _inventoryItem = InventoryUI.ins.GetItemById (_idRelation);
 			if (_inventoryItem != null) {
-				print ("inventoryItem " + _inventoryItem.id);
 				Destroy (_inventoryItem.gameObject);
 				PlayerHasItemDB.ins.Remove (_relation);
 			} else {
