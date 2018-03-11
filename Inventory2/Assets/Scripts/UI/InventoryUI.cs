@@ -27,9 +27,6 @@ public class InventoryUI : MonoBehaviour
 	[SerializeField] private GameObject slotPrefab;
 	[SerializeField] private GameObject itemPrefab;
 
-	[SerializeField] private GameObject useZone;
-	[SerializeField] private GameObject destroyZone;
-
 	private Transform parentZone;
 	private Transform parentSlot;
 
@@ -308,13 +305,6 @@ public class InventoryUI : MonoBehaviour
 		if (_save) {
 			MainUI.ins.SavePlayerItems ();
 		}
-	}
-
-	// show/hide use and destroy dropzones
-	public void ToggleUseAndDestroy (bool _useZone = false, bool _destroyZone = false)
-	{
-		useZone.SetActive (_useZone);
-		destroyZone.SetActive (_destroyZone);
 	}
 
 	#endregion

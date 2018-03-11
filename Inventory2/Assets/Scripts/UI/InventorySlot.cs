@@ -44,8 +44,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 	public void OnDrop (PointerEventData eventData)
 	{
 
-		// hide use & destroy
-		InventoryUI.ins.ToggleUseAndDestroy ();
+		//mainUI.ivUI.HideUseAndDestroy ();
 
 		Item _item = DatabaseManager.ins.GetItem (eventData.pointerDrag.GetComponent<InventoryItem> ()._relation.item_id);
 
