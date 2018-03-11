@@ -137,6 +137,9 @@ public class ModMenuUI : MonoBehaviour
 		
 		}
 
+		// show User notification
+		NotificationUI.ins.ItemAdded (_selectedItem, "added to inventory!");
+
 	}
 
 	void OnCraftButtonClicked (Button button)
