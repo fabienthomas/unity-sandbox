@@ -22,22 +22,22 @@ public class MainUI : MonoBehaviour
 
 	#endregion
 
-	#region VARIABLES
-
-	#endregion
-
 	#region FUNCTIONS
 
-	//update InventoryItem Status
+	// update an inventory item UI
 	public void UpdateStatus (int _idRelation, string _newStatus)
 	{
 		
-		// update Inventoryitem status
-		InventoryItem _inventoryItem = InventoryUI.ins.GetItemById (_idRelation);
+		// get relation in db from id
 		PlayerHasItem _relation = PlayerHasItemDB.ins.GetById (_idRelation);
-	
+
+		// we have a relation
 		if (_relation != null) {
-			Item _item = DatabaseManager.ins.GetItem (_relation.item_id);
+
+			// get inventory item in scene from id
+			InventoryItem _inventoryItem = InventoryUI.ins.GetItemById (_idRelation);
+
+			// we have an inventory item
 			if (_inventoryItem != null) {
 	
 				// update UI
@@ -58,21 +58,20 @@ public class MainUI : MonoBehaviour
 				} else if (_newStatus == "BROKEN") {
 	
 					// update amount text label
-					GameObject _statusUI = _inventoryItem.transform.Find ("Status").gameObject;
-	
+					GameObject _statusUI = _inventoryItem.transform.Find ("Status").gameObject;	
 					_statusUI.GetComponentInChildren<Image> ().sprite = Resources.Load<Sprite> ("Sprites/UI/broken");
-	
-					_statusUI.GetComponentInChildren<Image> ().enabled = true;
-	
+					_statusUI.GetComponentInChildren<Image> ().enabled = true;	
 					_statusUI.GetComponentInChildren<Text> ().text = "broken";
 	
 				} else if (_newStatus == "CRAFTING") {
 	
 					// update status text label
 					GameObject _statusUI = _inventoryItem.transform.Find ("Status").gameObject;
-	
+
+					// get crafting item in db from relation id
 					CraftingItem _craftingItem = CraftingItemDB.ins.GetCraftingItemByRelId (_idRelation);
-	
+
+					// no more crafting item ? 
 					if (_craftingItem != null) {
 						float delay = _craftingItem.delay;
 						_statusUI.GetComponentInChildren<Text> ().text = Mathf.Round (delay).ToString ();
@@ -88,6 +87,7 @@ public class MainUI : MonoBehaviour
 		}
 	}
 
+	// use an inventory item
 	public void Use (int _idRelation)
 	{
 
@@ -110,6 +110,7 @@ public class MainUI : MonoBehaviour
 		}
 	}
 
+	// save player item data base
 	public void SavePlayerItems ()
 	{
 		PlayerHasItemDB.ins.SavePlayerHasItem ();
