@@ -140,7 +140,9 @@ public class ItemHasRecipeDB : MonoBehaviour
 
 			foreach (var _ingredient in _itemRecipe.ingredients) {
 				PlayerHasItem _relation = dbm._phiDB.Find (i => i.item_id == _ingredient.item_id && i.amount >= _ingredient.quantity);
-				MainUI.ins.Use (_relation.id);
+				for (int i = 0; i < _ingredient.quantity; i++) {
+					MainUI.ins.Use (_relation.id);	
+				}
 			}
 		}
 	}
