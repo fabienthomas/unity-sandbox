@@ -1,0 +1,114 @@
+{
+  "0": {
+    "id": 0,
+    "slug": "fists",
+    "stackable": 0,
+	"title" : "Fists",
+	"type" : "WEAPON"
+  },
+  "1": {
+    "id": 1,
+    "slug": "knife01",
+    "stackable": 0,
+	"title" : "Knife",
+	"type" : "WEAPON"
+  },
+  "2": {
+    "id": 2,
+    "slug": "axe01",
+    "stackable": 0,
+	"title" : "Axe",
+	"type" : "WEAPON"
+  },
+  "3": {
+    "id": 3,
+    "slug": "bottledwater01",
+    "stackable": 1,
+	"title" : "Bottled Water",
+	"type" : "CONSUMABLE"
+  },
+  "4": {
+    "id": 4,
+    "slug": "sandwich01",
+    "stackable": 1,
+	"title" : "Sandwich",
+	"type" : "CONSUMABLE"
+  },
+  "5": {
+    "id": 5,
+    "slug": "honey01",
+    "stackable": 1,
+	"title" : "Honey Pot",
+	"type" : "CONSUMABLE"
+  },
+  "6": {
+    "id": 6,
+    "slug": "health01",
+    "stackable": 0,
+	"title" : "MediKit",
+	"type" : "CONSUMABLE"
+  },
+  "7": {
+    "id": 7,
+    "slug": "chocolate01",
+    "stackable": 1,
+	"title" : "Chocolate",
+	"type" : "CONSUMABLE"
+  },
+  "8": {
+    "id": 8,
+    "slug": "corn01",
+    "stackable": 1,
+	"title" : "Corn",
+	"type" : "INVENTORY"
+  },
+  "9": {
+    "id": 9,
+    "slug": "grain01",
+    "stackable": 1,
+	"title" : "Grain",
+	"type" : "INVENTORY"
+  },
+  "10": {
+    "id": 10,
+    "slug": "hammer01",
+    "stackable": 0,
+	"title" : "Hammer",
+	"type" : "WEAPON"
+  },
+  "11": {
+    "id": 11,
+    "slug": "meat01",
+    "stackable": 1,
+	"title" : "Meat",
+	"type" : "CONSUMABLE"
+  },
+  "12": {
+    "id": 12,
+    "slug": "wood01",
+    "stackable": 1,
+	"title" : "Wood",
+	"type" : "INVENTORY"
+  },
+  "13": {
+    "id": 13,
+    "slug": "metal01",
+    "stackable": 1,
+	"title" : "Metal",
+	"type" : "INVENTORY"
+  },
+  "14": {
+    "id": 14,
+    "slug": "stone01",
+    "stackable": 1,
+	"title" : "Stone",
+	"type" : "INVENTORY"
+  },
+  "15": {
+    "id": 15,
+    "slug": "rope01",
+    "stackable": 1,
+	"title" : "Rope",
+	"type" : "INVENTORY"
+  }
+}
