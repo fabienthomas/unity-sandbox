@@ -31,8 +31,6 @@ public class CraftingItemDB : MonoBehaviour
 
 	#region VARIABLES
 
-	public DatabaseManager dbm;
-
 	JsonData craftingItem;
 	public JsonData craftingItemJson;
 
@@ -77,11 +75,6 @@ public class CraftingItemDB : MonoBehaviour
 
 	#region FUNCTIONS
 
-	void Start ()
-	{
-		dbm = DatabaseManager.ins;
-	}
-
 	public void StartCrafting ()
 	{
 
@@ -109,39 +102,6 @@ public class CraftingItemDB : MonoBehaviour
 				}
 			}
 		} 
-	}
-
-	public IEnumerator Craft1 (CraftingItem _craftingItem)
-	{
-
-		float _timeStartedCrafting = Time.time;
-		float timeSinceStarted = Time.time - _timeStartedCrafting;
-		float percentageCompleted = timeSinceStarted / _craftingItem.delay;
-
-		while (true) {
-			timeSinceStarted = Time.time - _timeStartedCrafting;
-
-			percentageCompleted = timeSinceStarted / _craftingItem.delay;
-
-			float currentValue = Mathf.Lerp (_craftingItem.delay, 0, percentageCompleted);
-
-			print ("val " + currentValue);
-
-			_craftingItem.delay = currentValue;
-
-			print ("delay " + _craftingItem.delay);
-
-			//MainUI.ins.UpdateStatus (_craftingItem.phi_id, "CRAFTING");
-
-			if (percentageCompleted >= 1) {
-				Remove (_craftingItem);
-				break;
-			}
-
-			yield return new WaitForSeconds (1f);
-		}
-
-		print ("crafted");
 	}
 
 	// add crafting
