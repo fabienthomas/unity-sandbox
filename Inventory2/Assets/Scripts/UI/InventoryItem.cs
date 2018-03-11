@@ -33,14 +33,29 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public void OnBeginDrag (PointerEventData eventData)
 	{
 		if (_relation != null) {
-			// default name to empty slot
+			
+			// parenting off
 			transform.SetParent (transform.parent.parent.parent);
 
+			// unblock raycasts
 			GetComponent<CanvasGroup> ().blocksRaycasts = false;
 
-			// show destroy & use if item is consumable
-			// bool onlyDestroy = (item.Type != "CONSUMABLE") ? true : false;
-			//mainUI.ivUI.ShowUseAndDestroy (onlyDestroy);
+			// show use &/or destroy
+			Item _item = DatabaseManager.ins.GetItem (this._relation.item_id);
+
+			bool _showUseZone = false;
+			bool _showDestroyZone = true;
+
+			if (_item.Type == "CONSUMABLE")
+				_showUseZone = true;
+				
+
+			if (this._relation.status == "CRAFTING")
+				_showDestroyZone = false;
+
+			print ("_showUseZone " + _showUseZone + " / _showDestroyZone " + _showDestroyZone);
+
+			InventoryUI.ins.ToggleUseAndDestroy (_showUseZone, _showDestroyZone);
 		}
 	}
 
@@ -54,7 +69,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 	public void OnEndDrag (PointerEventData eventData)
 	{
 		// hide use & destroy
-		//mainUI.ivUI.HideUseAndDestroy ();
+		InventoryUI.ins.ToggleUseAndDestroy ();
 
 		transform.SetParent (inventorySlot.transform);
 		transform.position = inventorySlot.transform.position;
