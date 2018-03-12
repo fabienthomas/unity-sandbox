@@ -23,6 +23,9 @@ public class TooltipUI : MonoBehaviour
 	#endregion
 
 	public GameObject tooltipPanel;
+	public GameObject itemTooltipPrefab;
+
+	bool hasItemTooltipPrefab = false;
 
 	RectTransform tooltipRect;
 
@@ -39,16 +42,57 @@ public class TooltipUI : MonoBehaviour
 		if (tooltipPanel.activeInHierarchy) {
 
 			offsetX = tooltipRect.rect.width / 1.75f;
-
-			tooltipPanel.transform.position = Input.mousePosition - new Vector3 (-offsetX, 0, 0);
+			offsetY = tooltipRect.rect.height / 1.75f;
+			tooltipPanel.transform.position = Input.mousePosition - new Vector3 (-offsetX, offsetY, 0);
 		
 		}
 	}
 
 	public void ShowItemToolTip (Item _item)
 	{
-		string tt = _item.Title + " " + _item.Type;
-		Show (tt);
+		
+
+		tooltipPanel.SetActive (true);
+
+		if (hasItemTooltipPrefab) {
+	
+			Clear ();
+			hasItemTooltipPrefab = false;
+
+		} else {
+
+			// instanciate item tool tip prefab
+			GameObject _go = Instantiate (itemTooltipPrefab);
+
+			// icon
+			Image _icon = _go.transform.Find ("Slot").Find ("Icon").GetComponent<Image> ();
+			_icon.sprite = _item.Sprite;
+
+			// details
+			Transform _details = _go.transform.Find ("Details");
+
+			Text _title = _details.Find ("Title").GetComponent<Text> ();
+
+			_title.text = _item.Title;
+
+			Text _description = _details.Find ("Description").GetComponent<Text> ();
+
+			_description.text = _item.Title;
+
+			// parent & position
+			_go.transform.SetParent (tooltipPanel.transform);
+			_go.transform.position = tooltipPanel.transform.position;
+
+			hasItemTooltipPrefab = true;
+		
+		}
+	}
+
+	void Clear ()
+	{
+		foreach (Transform child in tooltipPanel.transform) {
+			Destroy (child.gameObject);
+		}
 	}
 
 	public void Show (string _tooltipText)
@@ -61,7 +105,11 @@ public class TooltipUI : MonoBehaviour
 
 	public void Hide ()
 	{
+		Clear ();
+
 		tooltipPanel.SetActive (false);
+	
+		hasItemTooltipPrefab = false;
 	}
 		
 }
