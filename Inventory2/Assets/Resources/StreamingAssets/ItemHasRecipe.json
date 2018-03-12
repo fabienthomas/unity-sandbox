@@ -34,5 +34,35 @@
     "item_id": 10,
     "ingredient_id": 12,
     "quantity": 1
+  },
+  "6": {
+    "id": 6,
+    "item_id": 16,
+    "ingredient_id": 9,
+    "quantity": 10
+  },
+  "7": {
+    "id": 7,
+    "item_id": 16,
+    "ingredient_id": 3,
+    "quantity": 2
+  },
+  "8": {
+    "id": 8,
+    "item_id": 17,
+    "ingredient_id": 9,
+    "quantity": 2
+  },
+  "9": {
+    "id": 9,
+    "item_id": 17,
+    "ingredient_id": 5,
+    "quantity": 1
+  },
+  "10": {
+    "id": 10,
+    "item_id": 17,
+    "ingredient_id": 7,
+    "quantity": 1
   }
 }
