@@ -31,6 +31,9 @@ public class DatabaseManager : MonoBehaviour
 	JsonData items;
 	[HideInInspector] public List<Item> itemsDB = new List<Item> ();
 
+	JsonData vitals;
+	public List<Vital> vitalsDB = new List<Vital> ();
+
 	// list that hold all relations player/item
 	[HideInInspector] public PlayerHasItemDB _playerHasItemDB;
 	[HideInInspector] public List<PlayerHasItem> _phiDB = new List<PlayerHasItem> ();
@@ -52,6 +55,12 @@ public class DatabaseManager : MonoBehaviour
 		items = JsonMapper.ToObject (File.ReadAllText (Application.dataPath + "/Resources/StreamingAssets/items.json"));	
 	}
 
+	// vitals database
+	void LoadVitals ()
+	{
+		vitals = JsonMapper.ToObject (File.ReadAllText (Application.dataPath + "/Resources/StreamingAssets/Vitals.json"));	
+	}
+
 	#endregion
 
 	#region CONSTRUCTORS
@@ -69,6 +78,25 @@ public class DatabaseManager : MonoBehaviour
 		}
 	}
 
+	void ConstructVitalsDatabase ()
+	{
+		if (vitals.Count > 0) {
+
+			for (int i = 0; i < vitals.Count; i++) {
+
+				vitalsDB.Add (new Vital (
+					(int)vitals [i] ["id"], 
+					vitals [i] ["slug"].ToString (), 
+					vitals [i] ["title"].ToString (), 
+					vitals [i] ["description"].ToString (),
+					vitals [i] ["type"].ToString (), 
+					vitals [i] ["color"].ToString ()));
+
+			}
+
+		}
+	}
+
 	#endregion
 
 	#region FUNCTION
@@ -79,6 +107,10 @@ public class DatabaseManager : MonoBehaviour
 		LoadItems ();
 
 		ConstructItemsDatabase ();
+
+		LoadVitals ();
+
+		ConstructVitalsDatabase ();
 
 		_playerHasItemDB = gameObject.GetComponent<PlayerHasItemDB> ();	
 		_phiDB = _playerHasItemDB.playerHasItemDB;
@@ -101,6 +133,11 @@ public class DatabaseManager : MonoBehaviour
 	public Item GetItemByTitle (string _titleItem)
 	{
 		return itemsDB.Find (i => i.Title == _titleItem);
+	}
+
+	public Vital GetVital (int _idVital)
+	{
+		return vitalsDB.Find (i => i.ID == _idVital);
 	}
 
 	// just compare to Lits of int
@@ -150,6 +187,45 @@ public class Item
 	}
 
 	public Item ()
+	{
+
+		this.ID = -1;
+
+	}
+}
+
+public class Vital
+{
+
+	public int ID { get; set; }
+
+	public string Slug { get; set; }
+
+	public string Title { get; set; }
+
+	public Sprite Sprite { get; set; }
+
+	public string Description { get; set; }
+
+	public string Type { get; set; }
+
+	public string Color { get; set; }
+
+	public Vital (int id, string slug, string title, string description, string type, string color)
+	{
+
+		this.ID = id;
+		this.Slug = slug;
+		this.Title = title;
+		this.Description = description;
+		this.Type = type;
+		this.Color = color;
+
+		this.Sprite = Resources.Load<Sprite> ("Sprites/Vitals/" + slug);
+
+	}
+
+	public Vital ()
 	{
 
 		this.ID = -1;
