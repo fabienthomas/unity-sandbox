@@ -110,5 +110,19 @@
     "stackable": 1,
 	"title" : "Rope",
 	"type" : "INVENTORY"
+  },
+  "16": {
+    "id": 16,
+    "slug": "bread01",
+    "stackable": 1,
+	"title" : "Bread",
+	"type" : "CONSUMABLE"
+  },
+  "17": {
+    "id": 17,
+    "slug": "snack01",
+    "stackable": 1,
+	"title" : "Cereal Bar",
+	"type" : "CONSUMABLE"
   }
 }
