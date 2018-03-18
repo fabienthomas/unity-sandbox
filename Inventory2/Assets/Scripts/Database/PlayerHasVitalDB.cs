@@ -58,12 +58,10 @@ public class PlayerHasVitalDB : MonoBehaviour
 	public JsonData playerHasItemJson;
 
 	// save player items database to JSON
-	public void SavePlayerHasItem ()
+	public void SavePlayerHasVital ()
 	{
 		playerHasItemJson = JsonMapper.ToJson (playerHasVitalDB);
 		File.WriteAllText (Application.dataPath + "/Resources/StreamingAssets/PlayerHasVital.json", playerHasItemJson.ToString ());
-
-		CraftPanelUI.ins.RefreshCraftPanel ();
 
 		print ("saving playerHasVitalDB " + playerHasVitalDB.Count + " items");
 	}
