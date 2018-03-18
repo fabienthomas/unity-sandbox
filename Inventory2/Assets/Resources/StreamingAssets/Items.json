@@ -124,5 +124,12 @@
     "stackable": 1,
 	"title" : "Cereal Bar",
 	"type" : "CONSUMABLE"
+  },
+  "18": {
+    "id": 18,
+    "slug": "meat02",
+    "stackable": 1,
+	"title" : "Raw Meat",
+	"type" : "CONSUMABLE"
   }
 }
