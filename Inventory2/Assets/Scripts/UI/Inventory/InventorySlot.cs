@@ -113,31 +113,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, 
 
 	private void OnDropUSE (PointerEventData eventData, Item _item)
 	{
+		
 		// dropped item
 		InventoryItem _ivItem1 = eventData.pointerDrag.GetComponent<InventoryItem> ();
 		PlayerHasItem _ivItem1Relation = PlayerHasItemDB.ins.GetById (_ivItem1.id);
-
-		_ivItem1Relation.amount--;
-
-		if (_ivItem1Relation.amount <= 0) {
-
-			// remove relation 
-			PlayerHasItemDB.ins.playerHasItemDB.Remove (_ivItem1Relation);
-
-			// remove item from UI
-			Destroy (_ivItem1.gameObject);
-
-		} else {
-
-			// save relation
-			mainUI.SavePlayerItems ();
-
-			// update UI
-			Transform _amountText = _ivItem1.transform.Find ("Amount").transform;
-			_amountText.GetComponent<Image> ().enabled = true;
-			_amountText.GetComponentInChildren<Text> ().text = _ivItem1Relation.amount.ToString ("D2");
-
-		}
+		MainUI.ins.Use (_ivItem1Relation.id);
 
 		print ("Using Item #" + _ivItem1Relation.item_id);
 	}
