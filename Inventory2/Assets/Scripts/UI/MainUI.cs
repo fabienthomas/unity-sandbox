@@ -106,6 +106,9 @@ public class MainUI : MonoBehaviour
 				Debug.LogError ("_inventoryItem not found for id #" + _idRelation);
 			}
 		}
+
+		ItemHasModifierDB.ins.ApplyModifier (_relation.item_id);
+
 	}
 
 	// save player item data base
