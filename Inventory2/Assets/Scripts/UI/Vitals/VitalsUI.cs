@@ -38,7 +38,30 @@ public class VitalsUI : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
+		UpdateVitals ();
+	}
+
+	void UpdateVitals ()
+	{
+
+		foreach (Transform child in vitalsPanel.transform) {
+
+			Vital _vital = child.GetComponent<VitalGauge> ().vital;
+			PlayerHasVital _playerHasVital = PlayerHasVitalDB.ins.playerHasVitalDB.Find (i => i.vital_id == _vital.ID);
+
+			UpdateVital (_vital, _playerHasVital, child.gameObject);
+
+		}
+
+	}
+
+	void UpdateVital (Vital _vital, PlayerHasVital _playerHasVital, GameObject _go)
+	{
+		// update value
+		_go.transform.Find ("Value").GetComponent<Text> ().text = _playerHasVital.value.ToString () + ValueSuffix (_vital);
+
+		// update slider
+		_go.transform.GetComponentInChildren<Slider> ().value = _playerHasVital.value / 100;
 	}
 
 	void LoadVitals ()
